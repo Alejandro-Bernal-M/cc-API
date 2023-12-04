@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/Alejandro-Bernal-M/cc-API/issues"
   },
-  "homepage": "https://github.com/Alejandro-Bernal-M/cc-API#readme"
+  "homepage": "https://github.com/Alejandro-Bernal-M/cc-API#readme",
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2"
+  }
 }
