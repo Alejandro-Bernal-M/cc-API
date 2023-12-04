@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-exports.requireSignin = async (req, res, next) => {
+exports.requireSignin = (req, res, next) => {
   const { token } = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ message: 'Authorization required' });
@@ -16,7 +16,7 @@ exports.requireSignin = async (req, res, next) => {
   return null;
 };
 
-exports.adminMiddleware = async (req, res, next) => {
+exports.adminMiddleware = (req, res, next) => {
   if (req.user.role !== 'admin') {
     return res.status(401).json({ message: 'Access denied' });
   }
@@ -24,7 +24,7 @@ exports.adminMiddleware = async (req, res, next) => {
   return null;
 };
 
-exports.userMiddleware = async (req, res, next) => {
+exports.userMiddleware = (req, res, next) => {
   if (req.user.role !== 'user') {
     return res.status(401).json({ message: 'Access denied' });
   }
