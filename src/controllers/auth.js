@@ -34,7 +34,16 @@ exports.signup = async (req, res) => {
       const savedUser = await newUser.save();
       if (savedUser === newUser) {
         const token = jwt.sign({ id: savedUser._id, role: savedUser.role }, process.env.JWT_SECRET, { expiresIn: '2h' });
-        res.status(200).json({ token, user: savedUser });
+        res.status(200).json({
+          token,
+          user: {
+            _id: savedUser._id,
+            firstName: savedUser.firstName,
+            lastName: savedUser.lastName,
+            email: savedUser.email,
+            role: savedUser.role,
+          },
+        });
       } else {
         return res.status(400).json({ message: 'Error saving the user' });
       }
@@ -44,4 +53,39 @@ exports.signup = async (req, res) => {
     }
   }
   return Promise;
+};
+
+exports.signin = async (req, res) => {
+  try {
+    const foundUser = await User.findOne({ email: req.body.email });
+    if (!foundUser) return res.status(400).json({ message: 'Incorrect email or password' });
+
+    if (foundUser.authenticate(req.body.password)) {
+      const token = jwt.sign({ _id: foundUser._id, role: foundUser.role }, process.env.JWT_SECRET, { expiresIn: '2h' });
+      const {
+        _id,
+        firstName,
+        lastName,
+        email,
+        role,
+      } = foundUser;
+
+      res.status(200).json({
+        token,
+        user: {
+          _id,
+          firstName,
+          lastName,
+          email,
+          role,
+        },
+      });
+    } else {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(400).json({ message: 'Something went wrong' });
+  }
+  return Promise.resolve();
 };
