@@ -6,10 +6,9 @@ const ProductSchema = new mongoose.Schema({
     trim: true,
     required: true,
   },
-  thumbnail: {
-    type: String,
-    required: true,
-  },
+  productImages: [
+    { img: String },
+  ],
   slug: {
     type: String,
     required: true,
