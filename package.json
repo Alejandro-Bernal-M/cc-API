@@ -1,0 +1,25 @@
+{
+  "name": "cc-api",
+  "version": "1.0.0",
+  "description": "API for ecommerce cocktails ecommerce",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alejandro-Bernal-M/cc-API.git"
+  },
+  "keywords": [
+    "API",
+    "cocktails",
+    "MERN"
+  ],
+  "author": "Alejandro Bernal Marin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alejandro-Bernal-M/cc-API/issues"
+  },
+  "homepage": "https://github.com/Alejandro-Bernal-M/cc-API#readme"
+}
