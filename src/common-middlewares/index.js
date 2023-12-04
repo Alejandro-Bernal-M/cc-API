@@ -17,8 +17,15 @@ exports.requireSignin = async (req, res, next) => {
 };
 
 exports.adminMiddleware = async (req, res, next) => {
-  const { role } = req.user.role;
-  if (role !== 'admin') {
+  if (req.user.role !== 'admin') {
+    return res.status(401).json({ message: 'Access denied' });
+  }
+  next();
+  return null;
+};
+
+exports.userMiddleware = async (req, res, next) => {
+  if (req.user.role !== 'user') {
     return res.status(401).json({ message: 'Access denied' });
   }
   next();
