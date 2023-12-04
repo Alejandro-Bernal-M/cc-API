@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     // Allow console statements in development
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-underscore-dangle': 'off',
 
     // Add more rules as needed
   },
